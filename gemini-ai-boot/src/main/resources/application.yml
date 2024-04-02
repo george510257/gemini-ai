@@ -21,6 +21,13 @@ spring:
       cache-null-values: true
       key-prefix: "gemini-ai:cache:"
       time-to-live: 1000
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      embedding:
+        model: llama2-chinese
+      chat:
+        model: llama2-chinese
 gemini:
   open-api:
     enabled: true
