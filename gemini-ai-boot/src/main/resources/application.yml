@@ -39,3 +39,5 @@ gemini:
         name: "Gemini AI"
         email: "gemini@glseven.com"
         url: "https://www.glseven.com"
+server:
+  port: 8084

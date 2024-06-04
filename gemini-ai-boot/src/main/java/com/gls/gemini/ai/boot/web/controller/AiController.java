@@ -1,13 +1,11 @@
 package com.gls.gemini.ai.boot.web.controller;
 
+import com.gls.gemini.ai.boot.web.service.OllamaService;
 import jakarta.annotation.Resource;
-import org.springframework.ai.chat.ChatClient;
-import org.springframework.ai.embedding.EmbeddingClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,16 +14,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/ai")
 public class AiController {
-    /**
-     * 聊天客户端
-     */
     @Resource
-    private ChatClient chatClient;
-    /**
-     * 嵌入客户端
-     */
-    @Resource
-    private EmbeddingClient embeddingClient;
+    private OllamaService ollamaService;
 
     /**
      * 问候
@@ -45,7 +35,7 @@ public class AiController {
      */
     @GetMapping("/ask")
     public String ask(String question) {
-        return chatClient.call(question);
+        return ollamaService.ask(question);
     }
 
     /**
@@ -56,6 +46,6 @@ public class AiController {
      */
     @GetMapping("/answer")
     public Map<String, Object> answer(String question) {
-        return Map.of("answer", embeddingClient.embedForResponse(List.of(question)));
+        return ollamaService.answer(question);
     }
 }
