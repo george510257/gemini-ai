@@ -20,7 +20,7 @@ public class AiController {
     /**
      * 问候
      *
-     * @return
+     * @return 问候语
      */
     @GetMapping("/hello")
     public String hello() {
