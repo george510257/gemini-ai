@@ -15,16 +15,33 @@ import java.util.Map;
  */
 @Service
 public class OllamaService {
-
+    /**
+     * 聊天模型
+     */
     @Resource
     private ChatModel chatModel;
+    /**
+     * 嵌入模型
+     */
     @Resource
     private EmbeddingModel embeddingModel;
 
+    /**
+     * 问候
+     *
+     * @param question 问题
+     * @return 答案
+     */
     public String ask(String question) {
         return chatModel.call(question);
     }
 
+    /**
+     * 回答
+     *
+     * @param question 问题
+     * @return 答案
+     */
     public Map<String, Object> answer(String question) {
         EmbeddingResponse response = embeddingModel.embedForResponse(CollUtil.newArrayList(question));
         return MapUtil.of("embedding", response);
